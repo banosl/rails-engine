@@ -36,6 +36,7 @@ group :development, :test do
   gem 'hirb'
   gem 'rspec-rails'
   gem 'shoulda-matchers', '~> 5.0'
+  gem 'jsonapi-serializer'
 end
 
 group :test do
