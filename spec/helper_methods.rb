@@ -18,4 +18,10 @@ def load_test_data
   @item_10 = create(:item, merchant: @merchant_3)
   @item_11 = create(:item, merchant: @merchant_3)
   @item_12 = create(:item, merchant: @merchant_3)
+
+  @customer1 = create(:customer)
+  @customer2 = create(:customer)
+  @customer3 = create(:customer)
+
+  # @transaction = create(:transaction, merchant: @merchant_1, customer: @customer_1)
 end
