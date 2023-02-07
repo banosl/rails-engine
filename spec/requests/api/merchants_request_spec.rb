@@ -31,4 +31,15 @@ describe "Merchants API" do
     expect(merchant[:attributes][:name]).to be_a(String)
     expect(merchant[:id]).to eq(@merchant_1.id.to_s)
   end
+
+  it "returns all items for one merchant based on id" do
+    get "/api/v1/merchants/#{@merchant_1.id}/items"
+
+    expect(response).to be_successful
+
+    merchant = JSON.parse(response.body, symbolize_names: true)[:data] 
+
+    expect(merchant[:attributes]).to have_key(:items)
+    expect(merchant).to have_key(:relationships)
+  end
 end
