@@ -1,6 +1,7 @@
 def load_test_data
   Merchant.destroy_all
   Item.destroy_all
+  Customer.destroy_all
 
   @merchant_1 = create(:merchant)
   @merchant_2 = create(:merchant)
