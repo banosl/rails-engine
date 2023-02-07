@@ -40,6 +40,7 @@ describe "Merchants API" do
     merchant = JSON.parse(response.body, symbolize_names: true)[:data] 
 
     expect(merchant[:attributes]).to have_key(:items)
-    expect(merchant).to have_key(:relationships)
+    expect(merchant[:attributes][:items].count).to eq(3)
+    # expect(merchant).to have_key(:relationships)
   end
 end
