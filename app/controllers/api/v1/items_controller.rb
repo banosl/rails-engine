@@ -1,7 +1,8 @@
 class Api::V1::ItemsController < ApplicationController
   def index
     if params.has_key?(:merchant_id)
-      render json: MerchantItemsSerializer.new(Merchant.find(params[:merchant_id]))
+      merchant = Merchant.find(params[:merchant_id])
+      render json: ItemSerializer.new(merchant.items)
     else
       render json: ItemSerializer.new(Item.all)
     end
@@ -18,10 +19,9 @@ class Api::V1::ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-    # binding.pry
-    item.update(item_params)
-    # item.save
-    render json: ItemSerializer.new(item)
+    if item.update(item_params)
+      render json: ItemSerializer.new(item)
+    end
   end
 
   private

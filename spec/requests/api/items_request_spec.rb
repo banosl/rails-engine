@@ -72,7 +72,7 @@ describe "Items API" do
     expect(@item_1.unit_price).to_not eq(item_params[:unit_price])
 
     patch "/api/v1/items/#{@item_1.id}", headers: headers, params: JSON.generate(item: item_params)
-# binding.pry
+
     item = Item.find(@item_1.id)
     expect(response).to be_successful
     expect(item.name).to eq(item_params[:name])
