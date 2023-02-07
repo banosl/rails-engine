@@ -12,12 +12,20 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    item = Item.create(new_item_params)
+    item = Item.create(item_params)
     render json: ItemSerializer.new(item), status: 201
   end
 
+  def update
+    item = Item.find(params[:id])
+    # binding.pry
+    item.update(item_params)
+    # item.save
+    render json: ItemSerializer.new(item)
+  end
+
   private
-  def new_item_params
+  def item_params
     params.require(:item).permit(:name, :description, :unit_price, :merchant_id)
   end
 end

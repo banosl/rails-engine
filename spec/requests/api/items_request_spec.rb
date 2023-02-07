@@ -58,4 +58,25 @@ describe "Items API" do
     expect(created_item.unit_price).to eq(item_params[:unit_price])
     expect(created_item.merchant_id).to eq(item_params[:merchant_id])
   end
+
+  it 'updates an item' do
+    item_params = ({
+      name: "Modus Hoperandi",
+      description: "IPA",
+      unit_price: 10.55,
+    })
+    headers = {"CONTENT_TYPE" => "application/json"}
+
+    expect(@item_1.name).to_not eq(item_params[:name])
+    expect(@item_1.description).to_not eq(item_params[:description])
+    expect(@item_1.unit_price).to_not eq(item_params[:unit_price])
+
+    patch "/api/v1/items/#{@item_1.id}", headers: headers, params: JSON.generate(item: item_params)
+# binding.pry
+    item = Item.find(@item_1.id)
+    expect(response).to be_successful
+    expect(item.name).to eq(item_params[:name])
+    expect(item.description).to eq(item_params[:description])
+    expect(item.unit_price).to eq(item_params[:unit_price])
+  end
 end
