@@ -21,6 +21,8 @@ class Api::V1::ItemsController < ApplicationController
     item = Item.find(params[:id])
     if item.update(item_params)
       render json: ItemSerializer.new(item)
+    elsif Merchant.exist?(Merchant.find(params[:merchant_id])) == false
+      render json: ErrorSerializer.new
     end
   end
 
