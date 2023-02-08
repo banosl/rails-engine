@@ -98,6 +98,18 @@ describe "Items API" do
     # expect(Invoice.find(@invoice_2.id)).to raise_error
     # expect(InvoiceItem.find(@invoice_item_4.id)).to raise_error
     # expect(Item.find(@item_1.id)).to raise_error
-    
+  end
+
+  it "get an item's merchant" do
+    get "/api/v1/items/#{@item_1.id}/merchant"
+
+    expect(response).to be_successful
+
+    item_merchant = JSON.parse(response.body, symbolize_names: true)[:data] 
+   
+    expect(item_merchant[:attributes]).to have_key(:name)
+    expect(item_merchant[:attributes][:name]).to eq(@merchant_1.name)
+    expect(item_merchant).to have_key(:id)
+    expect(item_merchant[:id]).to eq(@merchant_1.id.to_s)
   end
 end
