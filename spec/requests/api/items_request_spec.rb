@@ -81,6 +81,23 @@ describe "Items API" do
   end
 
   it "deletes item" do
+    expect(@merchant_1.items.count).to eq(3)
+    expect(@invoice_1.invoice_items.count).to eq(3)
+    expect(@invoice_2.invoice_items.count).to eq(1)
+    expect(@invoice_3.invoice_items.count).to eq(2)
+    expect(Invoice.count).to eq(4)
+
+    delete "/api/v1/items/#{@item_1.id}"
+
+    expect(response.status).to eq(204)
+    expect(@merchant_1.items.count).to eq(2)
+    expect(@invoice_1.invoice_items.count).to eq(2)
+    expect(@invoice_3.invoice_items.count).to eq(1)
+    expect(Invoice.count).to eq(3)
+    
+    # expect(Invoice.find(@invoice_2.id)).to raise_error
+    # expect(InvoiceItem.find(@invoice_item_4.id)).to raise_error
+    # expect(Item.find(@item_1.id)).to raise_error
     
   end
 end
