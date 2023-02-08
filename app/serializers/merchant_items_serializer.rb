@@ -1,6 +1,6 @@
 class MerchantItemsSerializer
   include JSONAPI::Serializer
-  attributes :name, :items
+  attributes :items
 
   # has_many :items
 end

@@ -37,10 +37,16 @@ describe "Merchants API" do
 
     expect(response).to be_successful
 
-    merchant = JSON.parse(response.body, symbolize_names: true)[:data] 
+    merchant_items = JSON.parse(response.body, symbolize_names: true)[:data] 
 
-    expect(merchant[:attributes]).to have_key(:items)
-    expect(merchant[:attributes][:items].count).to eq(3)
+    merchant_items.each do |item|
+      expect(item[:attributes]).to have_key(:name)
+      expect(item[:attributes]).to have_key(:description)
+      expect(item[:attributes]).to have_key(:unit_price)
+      expect(item[:attributes]).to have_key(:merchant_id)
+    end
+      
+    expect(merchant_items.count).to eq(3)
     # expect(merchant).to have_key(:relationships)
   end
 end
