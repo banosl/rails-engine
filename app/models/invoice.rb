@@ -8,11 +8,9 @@ class Invoice < ApplicationRecord
   validates_presence_of :status
 
   def self.destroy_empty_invoices
-    invoices = Invoice.all
-    invoices.each do |invoice|
-      if invoice.invoice_items == []
-        invoice.destroy
-      end
+    empty_invoices = Invoice.left_joins(:items).select("items.*, invoices.*").where(items: {id: nil})
+    empty_invoices.each do |invoice|
+      invoice.destroy
     end
   end
 end
