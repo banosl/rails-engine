@@ -1,4 +1,4 @@
 class ErrorSerializer
   include JSONAPI::Serializer
-  errors 
+# "errors": {status: :not_found}
 end

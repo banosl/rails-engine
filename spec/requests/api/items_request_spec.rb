@@ -11,7 +11,7 @@ describe "Items API" do
     expect(response).to be_successful
 
     items = JSON.parse(response.body, symbolize_names: true)[:data]
-
+# binding.pry
     expect(items.count).to eq(12)
 
     items.each do |item|

@@ -1,8 +1,15 @@
 class Api::V1::ItemsController < ApplicationController
   def index
     if params.has_key?(:merchant_id)
-      merchant = Merchant.find(params[:merchant_id])
-      render json: ItemSerializer.new(merchant.items)
+      if Merchant.exists?(params[:merchant_id])
+        merchant = Merchant.find(params[:merchant_id])
+        render json: ItemSerializer.new(merchant.items)
+      else Merchant.find(params[:merchant_id])
+      # else
+        # render json: ErrorSerializer.new(merchant)
+        # binding.pry
+       
+      end
     else
       render json: ItemSerializer.new(Item.all)
     end
@@ -21,8 +28,8 @@ class Api::V1::ItemsController < ApplicationController
     item = Item.find(params[:id])
     if item.update(item_params)
       render json: ItemSerializer.new(item)
-    elsif Merchant.exist?(Merchant.find(params[:merchant_id])) == false
-      render json: ErrorSerializer.new
+    elsif Merchant.find(params[:merchant_id]) #this line makes the test past in postman because it fails to find a merchant
+      # render json: {error: "merchant not found", status: 404}
     end
   end
 

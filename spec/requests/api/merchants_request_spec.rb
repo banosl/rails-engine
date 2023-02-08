@@ -49,4 +49,10 @@ describe "Merchants API" do
     expect(merchant_items.count).to eq(3)
     # expect(merchant).to have_key(:relationships)
   end
+
+  # it "returns 404 for merchant that doesn't exist" do
+  #   get "/api/v1/merchants/30/items"
+
+  #   expect(response.status).to eq(404)
+  # end
 end
