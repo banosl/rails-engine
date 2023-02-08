@@ -79,4 +79,8 @@ describe "Items API" do
     expect(item.description).to eq(item_params[:description])
     expect(item.unit_price).to eq(item_params[:unit_price])
   end
+
+  it "deletes item" do
+    
+  end
 end
