@@ -84,6 +84,20 @@ describe "Items API" do
     expect(item.unit_price).to eq(item_params[:unit_price])
   end
 
+  it 'tries to update item with a merchant that doesnt exist' do
+    item_params = ({
+      merchant_id: 555
+    })
+    headers = {"CONTENT_TYPE" => "application/json"}
+    patch "/api/v1/items/#{@item_1.id}", headers: headers, params: JSON.generate(item: item_params)
+binding.pry
+    item = JSON.parse(response.body, symbolize_names: true)[:data]
+
+    item = Item.find(@item_1.id)
+    expect(response).to_not be_successful
+    binding.pry
+  end
+
   it "deletes item" do
     expect(@merchant_1.items.count).to eq(3)
     expect(@invoice_1.invoice_items.count).to eq(3)

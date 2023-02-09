@@ -12,10 +12,12 @@ describe "Search API" do
     
     expect(result.count).to eq(1)
     expect(response).to be_successful
+    expect(result[:data][:type]).to eq("item")
     expect(result[:data][:attributes]).to have_key(:name)
     expect(result[:data][:attributes]).to have_key(:description)
     expect(result[:data][:attributes]).to have_key(:unit_price)
     expect(result[:data][:attributes]).to have_key(:merchant_id)
+    expect(result[:data][:attributes][:name]).to include("Ale")
   end
 
   it 'finds a single items with min or max price query' do
@@ -25,6 +27,7 @@ describe "Search API" do
 
     expect(result.count).to eq(1)
     expect(response).to be_successful
+    expect(result[:data][:type]).to eq("item")
     expect(result[:data][:attributes]).to have_key(:name)
     expect(result[:data][:attributes]).to have_key(:description)
     expect(result[:data][:attributes]).to have_key(:unit_price)
@@ -38,6 +41,7 @@ describe "Search API" do
     expect(result.count).to eq(1)
     expect(response).to be_successful
    
+    expect(result[:data][:type]).to eq("item")
     expect(result[:data][:attributes]).to have_key(:name)
     expect(result[:data][:attributes]).to have_key(:description)
     expect(result[:data][:attributes]).to have_key(:unit_price)
@@ -53,6 +57,7 @@ describe "Search API" do
     expect(result.count).to eq(1)
     expect(response).to be_successful
   #  binding.pry
+    expect(result[:data][:type]).to eq("item")
     expect(result[:data][:attributes]).to have_key(:name)
     expect(result[:data][:attributes]).to have_key(:description)
     expect(result[:data][:attributes]).to have_key(:unit_price)
@@ -61,18 +66,14 @@ describe "Search API" do
     expect(result[:data][:attributes][:unit_price]).to be < 30.00
   end
   
-  xit 'returns null object' do
+  it 'returns null object' do
     get '/api/v1/items/find?max_price=1.00'
 
     result = JSON.parse(response.body, symbolize_names: true)
 
     expect(result.count).to eq(1)
     expect(response).to be_successful
-  #  binding.pry
-    # expect(result[:data][:attributes]).to have_key(:name)
-    # expect(result[:data][:attributes]).to have_key(:description)
-    # expect(result[:data][:attributes]).to have_key(:unit_price)
-    # expect(result[:data][:attributes]).to have_key(:merchant_id)
-    # expect(result[:data][:attributes][:unit_price]).to be < 30.00
+    # binding.pry
+    expect(result[:data]).to eq(nil)
   end
 end

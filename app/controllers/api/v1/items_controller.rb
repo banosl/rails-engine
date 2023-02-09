@@ -4,10 +4,7 @@ class Api::V1::ItemsController < ApplicationController
       if Merchant.exists?(params[:merchant_id])
         merchant = Merchant.find(params[:merchant_id])
         render json: ItemSerializer.new(merchant.items)
-      else Merchant.find(params[:merchant_id])
-      # else
-        # render json: ErrorSerializer.new(merchant)
-        # binding.pry
+      # else Merchant.find(params[:merchant_id])
        
       end
     else

@@ -1,4 +1,6 @@
 class ErrorSerializer
-  include JSONAPI::Serializer
-# "errors": {status: :not_found}
+  def self.merchant_not_found(error)
+    response = {errors: [{title: error.message, status: "404"}]}
+
+  end
 end
