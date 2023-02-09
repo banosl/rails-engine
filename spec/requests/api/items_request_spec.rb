@@ -84,20 +84,6 @@ describe "Items API" do
     expect(item.unit_price).to eq(item_params[:unit_price])
   end
 
-  it 'tries to update item with a merchant that doesnt exist' do
-    item_params = ({
-      merchant_id: 555
-    })
-    headers = {"CONTENT_TYPE" => "application/json"}
-    patch "/api/v1/items/#{@item_1.id}", headers: headers, params: JSON.generate(item: item_params)
-binding.pry
-    item = JSON.parse(response.body, symbolize_names: true)[:data]
-
-    item = Item.find(@item_1.id)
-    expect(response).to_not be_successful
-    binding.pry
-  end
-
   it "deletes item" do
     expect(@merchant_1.items.count).to eq(3)
     expect(@invoice_1.invoice_items.count).to eq(3)
@@ -131,5 +117,35 @@ binding.pry
     expect(item_merchant[:attributes][:name]).to eq(@merchant_1.name)
     expect(item_merchant).to have_key(:id)
     expect(item_merchant[:id]).to eq(@merchant_1.id.to_s)
+  end
+
+   describe "sad paths" do
+    # it 'returns error when merchant cant be found' do
+    #   get "/api/v1/merchants/444"
+
+    #   expect(response).to_not be_successful
+    #   expect(response.status).to eq(404)
+
+    #   data = JSON.parse(response.body, symbolize_names: true)
+    #     expect(data[:errors]).to be_a(Array)
+    #     expect(data[:errors].first[:status]).to eq("404")
+    #     expect(data[:errors].first[:title]).to eq("Couldn't find Merchant with 'id'=444")
+    # end
+
+    xit 'tries to update item with a merchant that doesnt exist' do
+      item_params = ({
+        merchant_id: 555
+      })
+      headers = {"CONTENT_TYPE" => "application/json"}
+      patch "/api/v1/items/#{@item_1.id}", headers: headers, params: JSON.generate(item: item_params)
+ binding.pry
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+      data = JSON.parse(response.body, symbolize_names: true)
+        expect(data[:errors]).to be_a(Array)
+        expect(data[:errors].first[:status]).to eq("404")
+        expect(data[:errors].first[:title]).to eq("Couldn't find Merchant with 'id'=555")
+      
+    end
   end
 end

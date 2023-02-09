@@ -1,12 +1,14 @@
 class Api::V1::ItemsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :error_response
+
+  def error_response(error)
+    render json: ErrorSerializer.not_found(error), status: 404
+  end
+  
   def index
     if params.has_key?(:merchant_id)
-      if Merchant.exists?(params[:merchant_id])
-        merchant = Merchant.find(params[:merchant_id])
-        render json: ItemSerializer.new(merchant.items)
-      # else Merchant.find(params[:merchant_id])
-       
-      end
+      merchant = Merchant.find(params[:merchant_id])
+      render json: ItemSerializer.new(merchant.items)
     else
       render json: ItemSerializer.new(Item.all)
     end
@@ -23,10 +25,11 @@ class Api::V1::ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
+    if params.has_key?(:merchant_id)
+      Merchant.find(params[:merchant_id])
+    end
     if item.update(item_params)
       render json: ItemSerializer.new(item)
-    elsif Merchant.find(params[:merchant_id]) #this line makes the test past in postman because it fails to find a merchant
-      # render json: {error: "merchant not found", status: 404}
     end
   end
 
