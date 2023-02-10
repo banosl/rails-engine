@@ -25,8 +25,8 @@ class Api::V1::ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
-    if params.has_key?(:merchant_id)
-      Merchant.find(params[:merchant_id])
+    if params[:item].has_key?(:merchant_id)
+      Merchant.find(params[:item][:merchant_id])
     end
     if item.update(item_params)
       render json: ItemSerializer.new(item)

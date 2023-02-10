@@ -11,7 +11,6 @@ describe "Items API" do
     expect(response).to be_successful
 
     items = JSON.parse(response.body, symbolize_names: true)[:data]
-# binding.pry
     expect(items.count).to eq(12)
 
     items.each do |item|
@@ -120,25 +119,13 @@ describe "Items API" do
   end
 
    describe "sad paths" do
-    # it 'returns error when merchant cant be found' do
-    #   get "/api/v1/merchants/444"
-
-    #   expect(response).to_not be_successful
-    #   expect(response.status).to eq(404)
-
-    #   data = JSON.parse(response.body, symbolize_names: true)
-    #     expect(data[:errors]).to be_a(Array)
-    #     expect(data[:errors].first[:status]).to eq("404")
-    #     expect(data[:errors].first[:title]).to eq("Couldn't find Merchant with 'id'=444")
-    # end
-
-    xit 'tries to update item with a merchant that doesnt exist' do
+    it 'tries to update item with a merchant that doesnt exist' do
       item_params = ({
         merchant_id: 555
       })
       headers = {"CONTENT_TYPE" => "application/json"}
       patch "/api/v1/items/#{@item_1.id}", headers: headers, params: JSON.generate(item: item_params)
- binding.pry
+
       expect(response).to_not be_successful
       expect(response.status).to eq(404)
       data = JSON.parse(response.body, symbolize_names: true)
