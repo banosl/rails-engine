@@ -99,4 +99,20 @@ describe "Search API" do
     expect(response).to_not be_successful
     expect(response.status).to eq(400)
   end
+
+  it "min and max price params can't be sent with name params" do
+    get '/api/v1/items/find?max_price=-1.00&name=bob'
+
+    result = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    
+    get '/api/v1/items/find?min_price=-1.00&name=bob'
+
+    result = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+  end
 end
