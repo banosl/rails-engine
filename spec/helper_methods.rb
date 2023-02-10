@@ -38,7 +38,4 @@ def load_test_data
   @invoice_item_6 = create(:invoice_item, invoice: @invoice_3, item: @item_1 )
   @invoice_item_7 = create(:invoice_item, invoice: @invoice_4, item: @item_4 )
   @invoice_item_8 = create(:invoice_item, invoice: @invoice_4, item: @item_5 )
-  
-  
-  # @transaction = create(:transaction, merchant: @merchant_1, customer: @customer_1)
 end
