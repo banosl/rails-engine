@@ -1,29 +1,24 @@
-module Api
-  module V1
-    module Items
-      class SearchController < ApplicationController
-        def index
-          if params.has_key?(:name)
-            results_from_name = Item.where("lower(name) like ?", "%#{params[:name].downcase}%").order(:name).first
-            if results_from_name == nil
-              # binding.pry
-              render json: {data: results_from_name}
-            else
-              render json: ItemSerializer.new(results_from_name)
-            end
-          elsif params.has_key?(:min_price) && params.has_key?(:max_price)
-            results_from_max_and_min = Item.where("unit_price >= ?", params[:min_price]).where("unit_price <= ?", params[:max_price]).order(:name).first
-            render json: ItemSerializer.new(results_from_max_and_min)
-          elsif params.has_key?(:min_price) || params.has_key?(:max_price)
-            if params.has_key?(:min_price)
-                results_from_min = Item.where("unit_price >= ?", params[:min_price]).order(:name).first
-                render json: ItemSerializer.new(results_from_min)
-            elsif params.has_key?(:max_price)
-              results_from_max = Item.where("unit_price <= ?", params[:max_price]).order(:name).first
-                render json: ItemSerializer.new(results_from_max)
-            end
-          end
+class Api::V1::Items::SearchController < ApplicationController
+  def index
+    if params.has_key?(:name) && !params.has_key?(:min_price) && !params.has_key?(:max_price)
+      results = Item.search_name_fragment(params[:name])
+      if results == nil
+        render json: ErrorSerializer.no_match
+      else
+        render json: ItemSerializer.new(results)
+      end
+    elsif !params.has_key?(:name) && params.has_key?(:min_price) || params.has_key?(:max_price)
+      # binding.pry
+      if params[:min_price].to_f >= 0 && params[:max_price].to_f >= 0
+        results = Item.search_price(params[:min_price], params[:max_price])
+        if results == nil
+          render json: ErrorSerializer.no_match
+        else
+          render json: ItemSerializer.new(results)
         end
+      else
+        # binding.pry
+        render json: ErrorSerializer.bad_request, status: 400
       end
     end
   end

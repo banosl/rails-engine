@@ -56,7 +56,7 @@ describe "Search API" do
 
     expect(result.count).to eq(1)
     expect(response).to be_successful
-  #  binding.pry
+ 
     expect(result[:data][:type]).to eq("item")
     expect(result[:data][:attributes]).to have_key(:name)
     expect(result[:data][:attributes]).to have_key(:description)
@@ -73,7 +73,30 @@ describe "Search API" do
 
     expect(result.count).to eq(1)
     expect(response).to be_successful
-    # binding.pry
-    expect(result[:data]).to eq(nil)
+    
+    expect(result[:data]).to eq({})
+  end
+
+  it "min and max params can't be less than 0" do
+    get '/api/v1/items/find?max_price=-1.00'
+
+    result = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+
+    get '/api/v1/items/find?min_price=-1.00'
+
+    result = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+
+    get '/api/v1/items/find?max_price=-1.00&min_price=-5.00'
+
+    result = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
   end
 end
