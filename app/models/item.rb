@@ -10,9 +10,6 @@ class Item < ApplicationRecord
     where("lower(name) like ?", "%#{query.downcase}%").order(:name).first
   end
 
-
-
-
   def self.search_price(min = nil, max = nil)
     if max == nil
       where("unit_price >= ?", min).order(:name).first
