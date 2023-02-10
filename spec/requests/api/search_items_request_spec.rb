@@ -115,4 +115,12 @@ describe "Search API" do
     expect(response).to_not be_successful
     expect(response.status).to eq(400)
   end
+
+  it "returns null if name query returns nothing" do
+    get '/api/v1/items/find?name=not_beer_not_gonna_work'
+
+    result = JSON.parse(response.body, symbolize_names: true)
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+  end
 end
