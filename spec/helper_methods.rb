@@ -18,7 +18,7 @@ def load_test_data
   @item_9 = create(:item, merchant: @merchant_3)
   @item_10 = create(:item, merchant: @merchant_3)
   @item_11 = create(:item, merchant: @merchant_3)
-  @item_12 = create(:item, merchant: @merchant_3)
+  @item_12 = create(:item, merchant: @merchant_3, name: "Pickled Ale")
 
   @customer_1 = create(:customer)
   @customer_2 = create(:customer)

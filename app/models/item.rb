@@ -5,4 +5,18 @@ class Item < ApplicationRecord
   validates_presence_of :name
   validates_presence_of :description
   validates_presence_of :unit_price
+
+  def self.search_name_fragment(query)
+    where("lower(name) like ?", "%#{query.downcase}%").order(:name).first
+  end
+
+  def self.search_price(min = nil, max = nil)
+    if max == nil
+      where("unit_price >= ?", min).order(:name).first
+    elsif min == nil
+      where("unit_price <= ?", max).order(:name).first
+    else
+      where("unit_price >= ?", min).where("unit_price <= ?", max).order(:name).first
+    end
+  end
 end

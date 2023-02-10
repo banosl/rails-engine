@@ -47,12 +47,19 @@ describe "Merchants API" do
     end
       
     expect(merchant_items.count).to eq(3)
-    # expect(merchant).to have_key(:relationships)
   end
 
-  # it "returns 404 for merchant that doesn't exist" do
-  #   get "/api/v1/merchants/30/items"
+  describe "sad paths" do
+    it 'returns error when merchant cant be found' do
+      get "/api/v1/merchants/444"
 
-  #   expect(response.status).to eq(404)
-  # end
+      expect(response).to_not be_successful
+      expect(response.status).to eq(404)
+
+      data = JSON.parse(response.body, symbolize_names: true)
+        expect(data[:errors]).to be_a(Array)
+        expect(data[:errors].first[:status]).to eq("404")
+        expect(data[:errors].first[:title]).to eq("Couldn't find Merchant with 'id'=444")
+    end
+  end
 end
