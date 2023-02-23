@@ -22,7 +22,6 @@
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
 
@@ -72,9 +71,7 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
@@ -83,6 +80,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+This project involves developing an E-commerce application using a service-oriented architecture where the front and back ends communicate through APIs. The task is to expose the data that powers the site through an API for the front end to consume. The project requires using serializers to format JSON responses, testing API exposure, and using SQL and AR to gather data. 
+
+The learning goals range from having a functional understanding to a familiar understanding of the concepts involved. Implicit skills that can be developed include reading documentation, time management, prioritizing work, breaking down large projects into small pieces, and project management. The project spec is organized by feature type, and an Agile approach is encouraged to complete the assignment with estimated milestones.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -100,31 +100,23 @@
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
-
 ### Prerequisites
-
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+ * Ruby v 2.7.4
+ * Ruby on Rails v 5.2.8.1
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Clone the repo
    ```sh
    git clone https://github.com/banosl/rails-engine.git
    ```
-3. Install NPM packages
+2. Install gems
    ```sh
-   npm install
+   bundle install
    ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Setup db
+   ```rb
+   rake db:{drop,create,migrate,seed} 
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
