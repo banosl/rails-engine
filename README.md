@@ -70,7 +70,6 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
@@ -122,9 +121,37 @@ The learning goals range from having a functional understanding to a familiar un
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
+<!-- ROADMAP -->
+## Exposed Endpoints
+
+### RESTful Endpoints
+Merchants:
+* GET all merchants, ```/api/v1/merchants```
+* GET one merchant,  ```/api/v1/merchants/merchant_id```
+* GET all items for a given merchant ID, ```/api/v1/merchants/merchant_id/items```
+
+Items:
+* GET all items, ```/api/v1/items```
+* GET one item, ```/api/v1/items/item_id```
+* POST create an item ```/api/v1/items```
+* PUT edit an item, ```/api/v1/items/item_id```
+* delete an item
+* GET the merchant data for a given item ID, ```/api/v1/items/item_id/merchant```
+
+### Non-RESTful Endpoints
+* find one ITEM based on search criteria AND find all MERCHANTS based on search criteria
+* GET all merchants, ```/api/v1/merchants/find_all?name=query```
+* GET one item by name, ```/api/v1/items/find?name=query```
+* GET one item by prices, ```/api/v1/items/find?min_price=qty&max_price=qty```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Usage Examples on Postman
+
+* GET all items
+
+
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
@@ -133,22 +160,7 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
-
-See the [open issues](https://github.com/banosl/rails-engine/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
+<!-- CONTRIBUTING 
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -163,22 +175,22 @@ Don't forget to give the project a star! Thanks again!
 5. Open a Pull Request
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+-->
 
 
-
-<!-- LICENSE -->
+<!-- LICENSE 
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+-->
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - bsleo625@gmail.com
+Leo Banos Garcia - bsleo625@gmail.com
 
 Project Link: [https://github.com/banosl/rails-engine](https://github.com/banosl/rails-engine)
 
@@ -186,7 +198,7 @@ Project Link: [https://github.com/banosl/rails-engine](https://github.com/banosl
 
 
 
-<!-- ACKNOWLEDGMENTS -->
+<!-- ACKNOWLEDGMENTS 
 ## Acknowledgments
 
 * []()
@@ -194,7 +206,7 @@ Project Link: [https://github.com/banosl/rails-engine](https://github.com/banosl
 * []()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
+-->
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
