@@ -68,8 +68,8 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#exposed-endpoints">Exposed Endpoints</a></li>
+    <li><a href="#usage-examples-on-postman">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
