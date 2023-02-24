@@ -149,17 +149,14 @@ Items:
 <!-- USAGE EXAMPLES -->
 ## Usage Examples on Postman
 
-* GET all items
-* GET 
-* GET
-* POST
-* GET
+* GET all merchants <img width="1062" alt="Screen Shot 2023-02-23 at 1 17 59 PM" src="https://user-images.githubusercontent.com/111591731/221303929-2e2c27a2-c30a-4133-8c6d-44cfda931cb7.png">
 
+* GET a merchant's items <img width="1062" alt="Screen Shot 2023-02-23 at 1 18 18 PM" src="https://user-images.githubusercontent.com/111591731/221303869-77b63b03-e06b-4c47-b1b2-e3694ce22476.png">
 
+* POST create one item <img width="1062" alt="Screen Shot 2023-02-23 at 1 18 41 PM" src="https://user-images.githubusercontent.com/111591731/221303832-f4bc0be4-cee4-4c59-97a5-05f779507d0f.png">
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+* GET One Item by Name Fragment <img width="1062" alt="Screen Shot 2023-02-23 at 1 19 04 PM" src="https://user-images.githubusercontent.com/111591731/221303767-51a9bcda-acf6-4316-8aa6-7d9260b66428.png">
 
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
