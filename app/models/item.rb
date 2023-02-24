@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   validates_presence_of :unit_price
 
   def self.search_name_fragment(query)
-    where("lower(name) like ?", "%#{query.downcase}%").order(:name).first
+    where("name ilike ?", "%#{query.downcase}%").order(:name).first
   end
 
   def self.search_price(min = nil, max = nil)
