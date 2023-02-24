@@ -90,7 +90,7 @@ The learning goals range from having a functional understanding to a familiar un
 
 ### Built With
 
-* [Rails][Rails-url]
+[![Rails]][Rails-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
