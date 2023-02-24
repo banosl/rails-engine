@@ -26,7 +26,7 @@
 
 
 
-<!-- PROJECT LOGO -->
+<!-- PROJECT LOGO 
 <br />
 <div align="center">
   <a href="https://github.com/banosl/rails-engine">
@@ -48,7 +48,7 @@
     <a href="https://github.com/banosl/rails-engine/issues">Request Feature</a>
   </p>
 </div>
-
+-->
 
 
 <!-- TABLE OF CONTENTS -->
@@ -150,6 +150,10 @@ Items:
 ## Usage Examples on Postman
 
 * GET all items
+* GET 
+* GET
+* POST
+* GET
 
 
 
